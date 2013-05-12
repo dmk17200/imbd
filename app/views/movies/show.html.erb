@@ -1,0 +1,35 @@
+<h1>Movie #<%= @movie.id %></h1>
+
+<p>
+  <b>Title:</b>
+  <%= @movie.title %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @movie.year %>
+</p>
+
+<p>
+  <b>Director:</b>
+  <%= @movie.director_id %>
+</p>
+
+<%= @movie.director.name %>
+
+<p>Roles</p>
+
+<% @movie.roles.each do |role| %>
+<li><%= role.character_name %></li>
+<% end %>
+
+<p> Votes </p>
+<% @movie.user.each do |movie| %>
+<li><%= Movie.username %></li>
+<% end %>
+
+
+
+
+
+
