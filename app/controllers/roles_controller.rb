@@ -1,11 +1,19 @@
 class RolesController < ApplicationController
 
   def index
-    @roles = Role.all
+    if session[:user_id].present?
+      @roles = Role.all
+     else
+      redirect_to new_session_url, notice: "Sign in to see roles"
+    end
   end
 
   def show
-    @role = Role.find_by_id(params[:id])
+    if session[:user_id].present?
+      @role = Role.find_by_id(params[:id])
+    else
+      redirect_to new_session_url, notice: "Sign in to see roles"
+    end
   end
 
   def new
@@ -17,7 +25,7 @@ class RolesController < ApplicationController
     @role.character_name = params[:character_name]
     @role.actor_id = params[:actor_id]
     @role.movie_id = params[:movie_id]
-    
+
     if @role.save
             redirect_to roles_url
           else
@@ -34,7 +42,7 @@ class RolesController < ApplicationController
     @role.character_name = params[:character_name]
     @role.actor_id = params[:actor_id]
     @role.movie_id = params[:movie_id]
-    
+
     if @role.save
             redirect_to roles_url
           else

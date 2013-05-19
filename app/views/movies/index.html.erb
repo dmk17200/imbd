@@ -21,10 +21,11 @@
       <td><%= movie.year %></td>
       <td><%= movie.director.name %></td>
       <td><%= movie.votes.count %></td>
-      <td><%= form_tag(votes_url, method: 'post')  %>
-        <%= text_field_tag :movie_id, movie.id %></td>
-       <td> <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :username) %>
-         <td><%= submit_tag "Create Vote" %></td>
+      <td><%= form_tag(votes_url, method: 'post') do %>
+        <%= text_field_tag :movie_id, movie.id %>
+        <%= text_field_tag :user_id, session[:user_id] %>
+         <%= submit_tag "Create Vote" %>
+         <% end %>
      </td>
 
 

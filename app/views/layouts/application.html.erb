@@ -5,8 +5,24 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-</head>
-<body>
+<nav>
+       <%= link_to "Roles", roles_url %> |
+     <%= link_to "Actors", actors_url %> |
+     <%= link_to "Users", users_url %> |
+    <%= link_to "Votes", votes_url %>
+    <%= link_to "Votes", votes_url %> |
+    <% if session[:user_id].present? %>
+      <%= link_to "Sign Out", sessions_url, method: 'delete' %> |
+    <% else %>
+      <%= link_to "Sign In", new_session_url %> |
+      <%= link_to "Sign Up", new_user_url %>
+   <% end %>
+ </nav>
+ <%= notice %>
+ <% if session[:user_id].present? %>
+  <p> welcome back <%= User.find_by_id(session[:user_id]).username %> </P>
+  <% end %>
+  <%= notice %>
 
 <%= yield %>
 

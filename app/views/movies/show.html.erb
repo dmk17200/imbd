@@ -24,8 +24,8 @@
 <% end %>
 
 <p> Votes </p>
-<% @movie.user.each do |movie| %>
-<li><%= Movie.username %></li>
+<% @movie.users.each do |movie| %>
+<li><%= movie.username %></li>
 <% end %>
 
 

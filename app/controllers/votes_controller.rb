@@ -5,11 +5,17 @@
   end
 
   def show
-    @vote = Vote.find_by_id(params[:id])
+    if session[:user_id].present?
+      @vote = Vote.find_by_id(params[:id])
+    else
+      redirect_to new_session_url, notice: "you need to be signed in"
+    end
   end
 
   def new
     @vote = Vote.new
+
+
   end
 
   def create
@@ -25,7 +31,10 @@
   end
 
   def edit
-    @vote = Vote.find_by_id(params[:id])
+      @vote = Vote.find_by_id(params[:id])
+    if session[:user_id] != @vote.user_id
+      redirect_to movies_url, notice: "this is not you"
+    end
   end
 
   def update

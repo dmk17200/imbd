@@ -6,7 +6,7 @@
 
   <div>
     <%= label_tag :user_id %><br />
-    <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :username) %>
+    <%= text_field_tag :user_id, User.find_by_id(session[:user_id]).id %>
   </div>
 
     <div>
